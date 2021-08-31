@@ -185,6 +185,10 @@ func (c *Connection) Init() error {
 		initOp.Flags |= fusekernel.InitNoOpendirSupport
 	}
 
+	if c.cfg.EnableAsyncReads {
+		initOp.Flags |= fusekernel.InitAsyncRead
+	}
+
 	c.Reply(ctx, nil)
 	return nil
 }
